@@ -1,8 +1,13 @@
 application: commonplace-book-dev
 version: 1
-runtime: python
+runtime: python27
+threadsafe: true
 api_version: 1
 
 handlers:
-- url: /.*
-  script: asklogin.py
+- url: /api.*
+  script: servicemain.app
+
+- url: /test.*
+  script: main.app
+

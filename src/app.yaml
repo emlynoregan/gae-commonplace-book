@@ -5,5 +5,9 @@ threadsafe: true
 api_version: 1
 
 handlers:
-- url: /.*
-  script: asklogin.py
+- url: /api.*
+  script: servicemain.app
+
+- url: /tests.*
+  script: main.app
+

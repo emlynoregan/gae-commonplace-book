@@ -19,8 +19,8 @@ class ChapterMessage(messages.Message):
     
 def ConstructChapterMessage(aPage):
     luserMessage = ChapterMessage()
-    luserMessage.key = unicode(aPage.key)
-    luserMessage.user = unicode(aPage.keyUser)
+    luserMessage.key = aPage.key.id()
+    luserMessage.user = aPage.keyUser.id()
     luserMessage.created = int(time.mktime(aPage.dtCreated.timetuple()))
     luserMessage.updated = int(time.mktime(aPage.dtUpdated.timetuple()))
     luserMessage.name = aPage.strName
@@ -70,8 +70,8 @@ class PageMessage(messages.Message):
     
 def ConstructPageMessage(aPage):
     lpageMessage = PageMessage()
-    lpageMessage.key = unicode(aPage.key)
-    lpageMessage.user = unicode(aPage.keyUser)
+    lpageMessage.key = aPage.key.id()
+    lpageMessage.user = aPage.keyUser.id()
     lpageMessage.created = int(time.mktime(aPage.dtCreated.timetuple()))
     lpageMessage.updated = int(time.mktime(aPage.dtUpdated.timetuple()))
     lpageMessage.url = aPage.strUrl
@@ -98,8 +98,8 @@ def ConstructPagesMessage(aPages, aCursor, aMore):
     retval.more = aMore
     return retval
 
-class UserQueryMessage(messages.Message):
-    key = messages.StringField(1) # if not provided, it'll return the logged in user.
+class KeyQueryMessage(messages.Message):
+    key = messages.StringField(1)
 
 class UserMessage(messages.Message):
     key = messages.StringField(1)
@@ -113,7 +113,7 @@ class UserMessage(messages.Message):
     
 def ConstructUserMessage(aUser):
     luserMessage = UserMessage()
-    luserMessage.key = unicode(aUser.key)
+    luserMessage.key = aUser.key.id()
     luserMessage.created = int(time.mktime(aUser.dtCreated.timetuple()))
     luserMessage.updated = int(time.mktime(aUser.dtUpdated.timetuple()))
     luserMessage.userid = aUser.strUserId
